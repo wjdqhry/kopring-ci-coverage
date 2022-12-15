@@ -8,7 +8,7 @@ on:
 
 env:
   JAVA_VERSION: 17
-  COVERAGE_PERCENT: 70
+  COVERAGE_PERCENT: 60
 
 jobs:
   build:

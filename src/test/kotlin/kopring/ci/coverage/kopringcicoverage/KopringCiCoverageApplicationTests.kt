@@ -18,10 +18,10 @@ class KopringCiCoverageApplicationTests(
         assertEquals(helloResult, "Hello")
     }
 
-//    @Test
-//    fun testHelloDTO() {
-//        val helloDtoResult = helloService.getHelloDTO()
-//
-//        assertEquals(helloDtoResult.message, "Hello")
-//    }
+    @Test
+    fun testHelloDTO() {
+        val helloDtoResult = helloService.getHelloDTO()
+
+        assertEquals(helloDtoResult.message, "Hello")
+    }
 }

@@ -1,7 +1,11 @@
 name: measure-coverage
 
 on:
-  pull_request: master
+  pull_request:
+    path:
+      branches:
+        - master
+
 
 jobs:
   build:

@@ -24,4 +24,13 @@ class KopringCiCoverageApplicationTests(
 
         assertEquals(helloDtoResult.message, "Hello")
     }
+
+    @Test
+    fun testNamedHello() {
+        val name = "보쿄"
+
+        val helloResult = helloService.getHello(name = name)
+
+        assertEquals(helloResult, "Hello") // will be failed
+    }
 }

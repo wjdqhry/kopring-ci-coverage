@@ -44,7 +44,7 @@ jobs:
           update-comment: true
 
       - name: Block Merge if coverage is less than ${{ env.COVERAGE_PERCENT }}%
-        if: ${{ steps.jacoco.outputs.coverage-overall }} < ${{ env.COVERAGE_PERCENT }}
+        if: ${{ steps.jacoco.outputs.coverage-overall < env.COVERAGE_PERCENT }}
         uses: actions/github-script@v6
         with:
           script: |

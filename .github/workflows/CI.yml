@@ -6,7 +6,6 @@ on:
       branches:
         - master
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,4 +26,4 @@ jobs:
         with:
           paths: ${{ github.workspace }}/build/reportsJaCoCo/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 20
+          min-coverage-overall: 70

@@ -31,6 +31,6 @@ class KopringCiCoverageApplicationTests(
 
         val helloResult = helloService.getHello(name = name)
 
-        assertEquals(helloResult, "Hello") // will be failed
+        assertEquals(helloResult, "Hello $name!")
     }
 }

@@ -8,5 +8,5 @@ class HelloService {
 
     fun getHelloDTO() = HelloDTO(message = "Hello")
 
-    fun getHello(name: String) = "hello $name!"
+    fun getHello(name: String) = "Hello $name!"
 }

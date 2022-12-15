@@ -87,10 +87,10 @@ tasks.jacocoTestCoverageVerification {
             enabled = true
             element = "CLASS"
 
-            limit {
-                value = "COVEREDRATIO"
-                minimum = 0.7.toBigDecimal()
-            }
+//            limit {
+//                value = "COVEREDRATIO"
+//                minimum = 0.7.toBigDecimal()
+//            }
 
             excludes = qDomains + "**.*Application*"
         }

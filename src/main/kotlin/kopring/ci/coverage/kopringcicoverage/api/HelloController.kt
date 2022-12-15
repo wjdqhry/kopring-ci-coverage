@@ -15,7 +15,7 @@ class HelloController(private val helloService: HelloService) {
     @GetMapping("/dto")
     fun getHelloDTO(): HelloDTO = helloService.getHelloDTO()
 
-    @GetMapping
+    @GetMapping(params = ["name"])
     fun getHello(
         @RequestParam name: String
     ): String = helloService.getHello(name = name)

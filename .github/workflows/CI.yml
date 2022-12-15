@@ -8,6 +8,7 @@ on:
 
 env:
   JAVA_VERSION: 17
+  COVERAGE_PERCENT: 70
 
 jobs:
   build:
@@ -37,10 +38,14 @@ jobs:
         with:
           paths: ${{ github.workspace }}/build/reportsJaCoCo/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 70
+          min-coverage-overall: ${{ env.COVERAGE_PERCENT }}
           debug-mode: false
+          title: Code Coverage
+          update-comment: true
 
-      - name: Get the Coverage information
-        run: |
-          echo "Total coverage ${{ steps.jacoco.outputs.coverage-overall }}"
-          echo "Changed Files coverage ${{ steps.jacoco.outputs.coverage-changed-files }}"
+      - name: Block Merge if coverage is less than ${{ env.COVERAGE_PERCENT }}%
+        if: ${{ steps.jacoco.outputs.coverage-overall }} < ${{ env.COVERAGE_PERCENT }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('Overall coverage is less than ${{ env.COVERAGE_PERCENT }}%!')

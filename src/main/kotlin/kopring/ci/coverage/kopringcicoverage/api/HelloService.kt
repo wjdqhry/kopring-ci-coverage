@@ -7,4 +7,6 @@ class HelloService {
     fun getHello() = "Hello"
 
     fun getHelloDTO() = HelloDTO(message = "Hello")
+
+    fun getHello(name: String) = "Hello $name!"
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class KopringCiCoverageApplicationTests(
+class HelloServiceTest(
     @Autowired private val helloService: HelloService
 ) {
 
@@ -23,5 +23,14 @@ class KopringCiCoverageApplicationTests(
         val helloDtoResult = helloService.getHelloDTO()
 
         assertEquals(helloDtoResult.message, "Hello")
+    }
+
+    @Test
+    fun testNamedHello() {
+        val name = "보쿄"
+
+        val helloResult = helloService.getHello(name = name)
+
+        assertEquals(helloResult, "Hello $name!")
     }
 }

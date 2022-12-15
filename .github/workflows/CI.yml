@@ -1,3 +1,5 @@
+name: measure-coverage
+
 on:
   pull_request: master
 

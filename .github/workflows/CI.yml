@@ -6,19 +6,30 @@ on:
       branches:
         - master
 
+env:
+  JAVA_VERSION: 17
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 17
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v1
         with:
-          java-version: 17
+          java-version: ${{ env.JAVA_VERSION }}
+
       - name: Run Coverage
         run: |
           chmod +x gradlew
           ./gradlew test
+
+      - name: Upload Report
+        uses: 'actions/upload-artifact@v2'
+        with:
+          name: report.xml
+          path: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
 
       - name: Add coverage to PR
         id: jacoco
@@ -27,3 +38,9 @@ jobs:
           paths: ${{ github.workspace }}/build/reportsJaCoCo/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 70
+          debug-mode: false
+
+      - name: Get the Coverage information
+        run: |
+          echo "Total coverage ${{ steps.jacoco.outputs.coverage-overall }}"
+          echo "Changed Files coverage ${{ steps.jacoco.outputs.coverage-changed-files }}"
